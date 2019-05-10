@@ -11,7 +11,6 @@ file(GLOB_RECURSE HEADER_FILES
         ${CMAKE_SOURCE_DIR}/src/*.h
         ${CMAKE_SOURCE_DIR}/src/*.hpp)
 
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glfw3/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glm)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty)
 include_directories(/usr/local/include)

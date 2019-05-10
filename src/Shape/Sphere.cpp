@@ -11,10 +11,10 @@ Sphere::Sphere(unsigned int resolution) : resolution(resolution) {
     for (int i = 0 ; i < 6 ; ++i) {
         terrainFaces.emplace_back(TerrainFace(resolution, directions[i]));
         terrainFaces.back().constructMesh();
-        model.meshes.emplace_back(terrainFaces.back().mesh);
     }
 }
 
-void Sphere::Draw(Shader shader) {
-    model.Draw(shader);
+void Sphere::Draw(Shader shader) const {
+    for (const auto &terrain : terrainFaces)
+        terrain.mesh.Draw(shader);
 }

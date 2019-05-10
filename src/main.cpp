@@ -96,8 +96,8 @@ int main() {
     glDepthFunc(GL_LESS);
 
     glEnable(GL_STENCIL_TEST);
-    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-    glStencilOp(GL_REPLACE, GL_KEEP, GL_KEEP);
+    glStencilFunc(GL_LESS, 1, 0xFF);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
     //glDisable(GL_DEPTH_TEST);
     //glDisable(GL_STENCIL_TEST);
@@ -130,10 +130,10 @@ int main() {
 //        std::cout << "ERROR:FRAMEBUFFER:: Framebuff is not completed" << std::endl;
 //    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    Shader lightShader("../src/shaders/lighting.vertex", "../src/shaders/light.fragment");
-    Shader lightingShader("../src/shaders/lighting.vertex", "../src/shaders/lighting.fragment");
-    Shader borderShader("../src/shaders/lighting.vertex", "../src/shaders/border.fragment");
-    Shader lineShader("../src/shaders/border.vertex", "../src/shaders/border.fragment");
+    Shader lightShader("../../src/Shaders/shaders/lighting.vertex", "../../src/Shaders/shaders/light.fragment");
+    Shader lightingShader("../../src/Shaders/shaders/lighting.vertex", "../../src/Shaders/shaders/lighting.fragment");
+    Shader borderShader("../../src/Shaders/shaders/lighting.vertex", "../../src/Shaders/shaders/border.fragment");
+    Shader lineShader("../../src/Shaders/shaders/border.vertex", "../../src/Shaders/shaders/border.fragment");
     //Shader screenShader("../resources/shaders/screen.vertex", "../resources/shaders/screen.fragment");
 
     //Model myModel("../resources/img/nanosuit.obj");
@@ -246,7 +246,7 @@ int main() {
         ///Drawing object
         //render object
         glStencilFunc(GL_ALWAYS, 1, 0xFF);
-        glStencilMask(0x00);
+        glStencilMask(0xFF);
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         lineShader.use();
         //model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
@@ -264,7 +264,7 @@ int main() {
         //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         glStencilFunc(GL_NOTEQUAL, 1, 0xFF); ///if it has to be bordered ///
-        glStencilMask(0xFF);
+        glStencilMask(0x00);
         //Edit shader
         lightingShader.use();
 

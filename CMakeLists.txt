@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(OpenGLTuto)
 
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/)
+
 #add all source files
 file(GLOB_RECURSE SOURCE_FILES
         ${CMAKE_SOURCE_DIR}/src/*.c

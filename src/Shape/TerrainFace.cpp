@@ -2,17 +2,16 @@
 // Created by daftmat on 06/05/19.
 //
 
-#include "TerrainFace.hpp"
+#include "Sphere.hpp"
 
-TerrainFace::TerrainFace(unsigned int resolution, glm::vec3 normal) : resolution(resolution), normal(normal) {
+Sphere::TerrainFace::TerrainFace(unsigned int resolution, glm::vec3 normal) : resolution(resolution), normal(normal) {
     axisA = glm::vec3(normal.y, normal.z, normal.x);
     axisB = glm::cross(normal, axisA);
 }
 
-void TerrainFace::constructMesh() {
+void Sphere::TerrainFace::constructMesh() {
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
-    int triIndex = 0;
 
     for (int y = 0 ; y < resolution ; ++y) {
         for (int x = 0 ; x < resolution ; ++x) {
@@ -45,7 +44,7 @@ void TerrainFace::constructMesh() {
     mesh.setupMesh();
 }
 
-void TerrainFace::addTexture(const std::string &path, TexType type) {
+void Sphere::TerrainFace::addTexture(const std::string &path, TexType type) {
     Texture newTex;
     newTex.path = path;
     switch ( type ) {

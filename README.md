@@ -25,6 +25,8 @@ In order to compile and run this little engine, you will need :
     cd build
     cmake ..
     make -j16
+    cd include
+    cp -r assimp /usr/share/include/
     ```
 
 # Download repository

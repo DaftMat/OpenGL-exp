@@ -174,10 +174,10 @@ int main() {
     Texture texture;
     texture.path = "../resources/img/grass.png";
     texture.type = "texture_diffuse";
-    texture.id = TextureFromFile(texture.path);
+    //texture.id = TextureFromFile(texture.path);
     textures.push_back(texture);
 
-    Mesh grass(vertices, indices, textures);
+    //Mesh grass(vertices, indices, textures);
 
 //    float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
 //            // positions   // texCoords
@@ -236,7 +236,7 @@ int main() {
         borderShader.setMat4f("view", camera.getViewMatrix());
         borderShader.setMat4f("projection", projection);
 
-        borderShader.setMat4f("model", myModel.getTransform());
+        borderShader.setMat4f("model", model);
 
         //render object
         //model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
@@ -269,8 +269,7 @@ int main() {
         lightingShader.setMat4f("projection", projection);
 
         //print soldier
-        myModel.setTransform(model);
-        lightingShader.setMat4f("model", myModel.getTransform());
+        lightingShader.setMat4f("model", model);
         //myModel.Draw(lightingShader);
 
         //print grass

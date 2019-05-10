@@ -11,6 +11,7 @@
 #include "Cameras/Camera.hpp"
 #include "Shape/Model.hpp"
 #include "Shape/Sphere.hpp"
+#include "Shape/Gizmo.h"
 #include <cmath>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -132,10 +133,12 @@ int main() {
     Shader lightShader("../src/shaders/lighting.vertex", "../src/shaders/light.fragment");
     Shader lightingShader("../src/shaders/lighting.vertex", "../src/shaders/lighting.fragment");
     Shader borderShader("../src/shaders/lighting.vertex", "../src/shaders/border.fragment");
+    Shader lineShader("../src/shaders/border.vertex", "../src/shaders/border.fragment");
     //Shader screenShader("../resources/shaders/screen.vertex", "../resources/shaders/screen.fragment");
 
     //Model myModel("../resources/img/nanosuit.obj");
     Sphere mySphere(4);
+    Gizmo gizmo;
 
     lightingShader.use();
     model = glm::scale(model, glm::vec3(.2f, .2f, .2f));
@@ -179,6 +182,21 @@ int main() {
 
     //Mesh grass(vertices, indices, textures);
 
+    float lineVertice[] = {
+            //positions
+            0.f, 0.f, 0.f,
+            0.f, 3.f, 0.f
+    };
+
+    unsigned int lineVAO, lineVBO;
+    glGenVertexArrays(1, &lineVAO);
+    glGenBuffers(1, &lineVBO);
+    glBindVertexArray(lineVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(lineVertice), &lineVertice, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
 //    float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
 //            // positions   // texCoords
 //            -1.0f,  1.0f,  0.0f, 1.0f,
@@ -218,7 +236,6 @@ int main() {
         processInput(window);
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.getFov()), screenWidth / screenHeight, 0.1f, 100.0f);
-
         //glBindFramebuffer(GL_FRAMEBUFFER, fbo);
         //rendering commands
         glClearColor(.2f, .2f, .2f, 1.f);
@@ -229,22 +246,25 @@ int main() {
         ///Drawing object
         //render object
         glStencilFunc(GL_ALWAYS, 1, 0xFF);
-        glStencilMask(0xFF);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        borderShader.use();
+        glStencilMask(0x00);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        lineShader.use();
         //model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-        borderShader.setMat4f("view", camera.getViewMatrix());
-        borderShader.setMat4f("projection", projection);
-
-        borderShader.setMat4f("model", model);
-
+        lineShader.setMat4f("view", camera.getViewMatrix());
+        lineShader.setMat4f("projection", projection);
+//
+//        glm::mat4 model2 = glm::scale(model, glm::vec3(1000.f, 1.f, 1000.f));
+        gizmo.setTransform(model);
+        gizmo.Draw(lineShader);
         //render object
         //model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-        //mySphere.Draw(borderShader);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        //mySphere.Draw(lineShader);
+        //glBindVertexArray(lineVAO);
+        //glDrawArrays(GL_LINES, 0, 2);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         glStencilFunc(GL_NOTEQUAL, 1, 0xFF); ///if it has to be bordered ///
-        glStencilMask(0x00);
+        glStencilMask(0xFF);
         //Edit shader
         lightingShader.use();
 
@@ -269,7 +289,7 @@ int main() {
         lightingShader.setMat4f("projection", projection);
 
         //print soldier
-        lightingShader.setMat4f("model", model);
+        lightingShader.setMat4f("model", gizmo.getTransform());
         //myModel.Draw(lightingShader);
 
         //print grass

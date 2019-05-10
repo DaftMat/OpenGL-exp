@@ -12,7 +12,7 @@ In order to compile and run this little engine, you will need :
     mkdir build
     cd build
     cmake ..
-    make -j16
+    make
     sudo make install
     ```
   * [glfw3](https://github.com/glfw/glfw) same as Assimp :
@@ -20,7 +20,7 @@ In order to compile and run this little engine, you will need :
     mkdir build
     cd build
     cmake ..
-    make -j16
+    make
     sudo make install
     ```
 

@@ -13,7 +13,7 @@ file(GLOB_RECURSE HEADER_FILES
 
 include_directories(/usr/local/include)
 include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glfw3/include)
-include_directories(${CMAKE_SOURCE_DIR}/3rdparty)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/glm)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
 

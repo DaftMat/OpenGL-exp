@@ -10,7 +10,14 @@ In order to compile and run this little engine, you will need :
     * Profile : core
     * No extensions
     * Generate a loader
-    * -> Click on generate and you're all set
+    * Click on generate
+    * Download include directory
+    * run :
+     ```
+     cd include
+     sudo cp -d glad /usr/share/include/
+     sudo cp -d KHR /usr/share/include/
+     ```
     
   * [Assimp](https://github.com/assimp/assimp.git) Clone their repo into your downloads folder (or any else) and open a terminal :
     ```

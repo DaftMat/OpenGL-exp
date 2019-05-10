@@ -3,6 +3,10 @@ Experimentation of OpenGL using GLFW, following [this awesome tutorial](https://
 
 # Dependencies
 In order to compile and run this little engine, you will need :
+  * Run this command to have all the native libraries :
+  ```
+  sudo apt-get install libglew-dev libsdl2-dev libglm-dev libfreetype6-dev freeglut3-dev build-essential libgl1-mesa-dev libgdiplus
+  ```
   * [Assimp](https://github.com/assimp/assimp.git) Clone their repo into your downloads folder (or any else) and open a terminal :
     ```
     mkdir build

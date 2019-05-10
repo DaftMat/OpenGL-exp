@@ -3,30 +3,13 @@ Experimentation of OpenGL using GLFW, following [this awesome tutorial](https://
 
 # Dependencies
 In order to compile and run this little engine, you will need :
-  * [GLAD](https://glad.dav1d.de/) with the following settings :
-    * Language : C/C++
-    * Specification : OpenGL
-    * API gl : version 4.6
-    * Profile : core
-    * No extensions
-    * Generate a loader
-    * Click on generate
-    * Download include directory
-    * run :
-     ```
-     cd include
-     sudo cp -r glad /usr/share/include/
-     sudo cp -r KHR /usr/share/include/
-     ```
-    
   * [Assimp](https://github.com/assimp/assimp.git) Clone their repo into your downloads folder (or any else) and open a terminal :
     ```
     mkdir build
     cd build
     cmake ..
     make -j16
-    cd include
-    cp -r assimp /usr/share/include/
+    sudo make install
     ```
 
 # Download repository

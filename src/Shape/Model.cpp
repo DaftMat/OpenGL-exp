@@ -4,7 +4,7 @@
 
 #include "Model.hpp"
 
-void Model::Draw(Shader shader) {
+void Model::Draw(const Shader &shader) const {
     for (auto &mesh : meshes) {
         mesh.Draw(shader);
     }

@@ -37,7 +37,7 @@ void Gizmo::Draw(Shader &shader) {
     glBindVertexArray(VAO);
     utilTransform = glm::rotate(transform, glm::radians(-90.f), glm::vec3(0.f, 0.f, 1.f));
     shader.setMat4f("model", utilTransform);
-    shader.setVec3f("color", 0.f, 0.f, 1.f);
+    shader.setVec3f("color", 1.f, 0.f, 0.f);
     glDrawElements(GL_TRIANGLES, triangles.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
@@ -45,7 +45,7 @@ void Gizmo::Draw(Shader &shader) {
     glBindVertexArray(VAO);
     utilTransform = glm::rotate(transform, glm::radians(90.f), glm::vec3(1.f, 0.f, 0.f));
     shader.setMat4f("model", utilTransform);
-    shader.setVec3f("color", 1.f, 0.f, 0.f);
+    shader.setVec3f("color", 0.f, 0.f, 1.f);
     glDrawElements(GL_TRIANGLES, triangles.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }

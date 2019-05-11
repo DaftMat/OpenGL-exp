@@ -45,7 +45,7 @@ void Mesh::setupMesh() {
     glBindVertexArray(0);
 }
 
-void Mesh::Draw(Shader shader) const {
+void Mesh::Draw(const Shader &shader) const {
     //shader.setMat4f("model", transform);
 
     unsigned int diffuseNr = 1;

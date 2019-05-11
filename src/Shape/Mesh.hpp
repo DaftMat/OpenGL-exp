@@ -43,7 +43,7 @@ public:
     Mesh() = default;
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 
-    void Draw(Shader shader) const;
+    void Draw(const Shader &shader) const;
     void setupMesh();
 };
 

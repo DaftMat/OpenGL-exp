@@ -40,6 +40,7 @@ To clone this repo, run the command :
     ```
   * Finally, here's the command that runs the OpenGL program :
     ```
+    cd ../bin
     ./OpenGLTuto
     ```
     

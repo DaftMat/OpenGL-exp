@@ -36,7 +36,7 @@ To clone this repo, run the command :
     mkdir build
     cd build
     cmake ..
-    make -j16
+    make
     ```
   * Finally, here's the command that runs the OpenGL program :
     ```
